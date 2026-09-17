@@ -1,11 +1,14 @@
 # to11-cli
 
-Company skills for your coding agent.
+The agent skill sharing CLI.
+
+Centrally maintain your team's agent skills that sync automatically to every
+developer. Scope skills per terminal session to the task at hand and keep
+context clean.
 
 A **skill** is a folder of files your agent reads — a runbook, a house style, a
-review checklist. `to11` keeps the ones your company publishes current on your
-machine, and lets a maintainer store and release a version without opening a
-browser.
+review checklist. `to11` keeps the ones your team publishes current on every
+machine, and lets a maintainer release a new version without opening a browser.
 
 This repository hosts the releases. The source lives elsewhere.
 
