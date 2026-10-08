@@ -60,6 +60,20 @@ Download the archive for your platform from the
 
 ## Verify
 
+### Check the installed version
+
 ```bash
 to11 --version
+```
+
+### Verify a release's signature
+
+Every release signs `checksums.txt` with [cosign](https://docs.sigstore.dev/cosign/installation/), keyless — the signature is tied to the exact CI workflow that produced it, not a key to trust or protect:
+
+```bash
+cosign verify-blob \
+  --bundle checksums.txt.sigstore.json \
+  --certificate-identity-regexp '^https://github\.com/to11ai/platform/\.github/workflows/cli-release-binaries\.yml@.*$' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com \
+  checksums.txt
 ```
