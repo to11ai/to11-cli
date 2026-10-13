@@ -35,14 +35,13 @@ sudo apt install to11
 
 ```bash
 sudo rpm --import https://yum.fury.io/to11/gpg.key
+sudo rpm --import https://raw.githubusercontent.com/to11ai/to11-cli/main/rpm-signing-key.asc
 sudo tee /etc/yum.repos.d/to11.repo <<EOF
 [to11]
 name=to11 Repository
 baseurl=https://yum.fury.io/to11/
 enabled=1
-# repo_gpgcheck verifies the signed repo metadata; gpgcheck is 0 because
-# the .rpm itself is not individually signed (a separate, unshipped step).
-gpgcheck=0
+gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://yum.fury.io/to11/gpg.key
 EOF
