@@ -23,7 +23,10 @@ brew install to11ai/tap/to11
 ### With apt (Ubuntu & Debian)
 
 ```bash
-echo "deb [trusted=yes] https://apt.fury.io/to11/ /" | sudo tee /etc/apt/sources.list.d/to11.list
+sudo apt-get install -y curl gnupg
+curl -fsSL https://apt.fury.io/to11/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/to11-keyring.gpg
+sudo chmod go+r /usr/share/keyrings/to11-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/to11-keyring.gpg] https://apt.fury.io/to11/ * *" | sudo tee /etc/apt/sources.list.d/to11.list
 sudo apt update
 sudo apt install to11
 ```
@@ -31,12 +34,17 @@ sudo apt install to11
 ### With dnf (Fedora & RHEL)
 
 ```bash
+sudo rpm --import https://yum.fury.io/to11/gpg.key
 sudo tee /etc/yum.repos.d/to11.repo <<EOF
 [to11]
 name=to11 Repository
 baseurl=https://yum.fury.io/to11/
 enabled=1
+# repo_gpgcheck verifies the signed repo metadata; gpgcheck is 0 because
+# the .rpm itself is not individually signed (a separate, unshipped step).
 gpgcheck=0
+repo_gpgcheck=1
+gpgkey=https://yum.fury.io/to11/gpg.key
 EOF
 
 sudo dnf install to11
