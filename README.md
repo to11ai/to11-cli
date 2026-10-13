@@ -23,6 +23,7 @@ brew install to11ai/tap/to11
 ### With apt (Ubuntu & Debian)
 
 ```bash
+sudo apt-get update
 sudo apt-get install -y curl gnupg
 curl -fsSL https://apt.fury.io/to11/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/to11-keyring.gpg
 sudo chmod go+r /usr/share/keyrings/to11-keyring.gpg
